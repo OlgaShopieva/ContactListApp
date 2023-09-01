@@ -1,17 +1,30 @@
 import './App.css';
 import TableView from './layouts/tableView/TableView';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FormNewItem from './layouts/tableView/formNewItem/FormNewItem';
 
 const App = () => {
 
-    const [items, setItems] = useState(
-      [
-        { id:1, fullName: "Name10", phone: "+44 368 435", notes: "Note10"},
-        { id:2, fullName: "Name10", phone: "+44 368 435", notes: "Note10"},
-        { id:3, fullName: "Name10", phone: "+44 368 435", notes: "Note10"},
-      ]
-    );
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/contacts')
+  .then(res => {
+    const data = [];
+  
+    res.data._embedded.contacts.forEach(item => {
+      data.push(
+        {
+        fullName: item.fullName,
+        phone: item.phone,
+        notes: item.notes
+        }
+      )
+    })
+    setItems(data);
+  })
+  
+  }, []);
 
 const appendContact = (fullName, phone, notes) => {
 
