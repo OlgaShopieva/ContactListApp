@@ -16,11 +16,13 @@ const TableView = (props) => {
     </thead>
     <tbody className='table-group-divider'>
     {
-        props.data.map(item => (
+        props.data.map((item, index) => (
             <TableRowItem
             key={item.id}
             deleteContact={props.deleteContact}
             contact={item}
+            index = {index + 1}
+
             />
         ))
     }

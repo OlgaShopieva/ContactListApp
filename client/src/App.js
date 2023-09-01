@@ -42,13 +42,19 @@ const appendContact = (fullName, phone, notes) => {
 
 
   const temp = {
-    id:currentId, 
+    // id:currentId, 
     fullName: fullName, 
     phone: phone, 
     notes: notes
   };
-  setItems([...items, temp]);
 
+  const url = `http://localhost:8080/api/contacts`;
+  axios.post(url, temp)
+  .then(e => {
+     temp.id = e.data.id;
+     setItems([...items, temp]);
+  }
+  )
 }
 
 const deleteContact = (id) => {
