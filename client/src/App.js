@@ -1,4 +1,5 @@
 import './App.css';
+import axios from 'axios';
 import TableView from './layouts/tableView/TableView';
 import React, {useState, useEffect} from 'react';
 import FormNewItem from './layouts/tableView/formNewItem/FormNewItem';
@@ -8,16 +9,18 @@ const App = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+
     axios.get('http://localhost:8080/api/contacts')
-  .then(res => {
+    .then(res => {
     const data = [];
   
     res.data._embedded.contacts.forEach(item => {
       data.push(
         {
+        id: item.id,
         fullName: item.fullName,
         phone: item.phone,
-        notes: item.notes
+        notes: item.notes,
         }
       )
     })
@@ -28,14 +31,14 @@ const App = () => {
 
 const appendContact = (fullName, phone, notes) => {
 
- const length = items.length;
- let currentId = 0;
+//  const length = items.length;
+//  let currentId = 0;
 
- if(length==0) {
-  currentId=1;
- } else {
-  currentId = items[length - 1].id + 1;
- }
+//  if(length===0) {
+//   currentId=1;
+//  } else {
+//   currentId = items[length - 1].id + 1;
+//  }
 
 
   const temp = {
@@ -49,7 +52,9 @@ const appendContact = (fullName, phone, notes) => {
 }
 
 const deleteContact = (id) => {
-  setItems(items.filter(item => item.id != id));
+  const url = `http://localhost:8080/api/contacts/${id}`;
+  axios.delete(url);
+  setItems(items.filter(item => item.id !== id));
 }
 
   return (
@@ -61,7 +66,6 @@ const deleteContact = (id) => {
           <div className='card-body'>
             <TableView data = {items} deleteContact={deleteContact}/>
             <FormNewItem appendContact={appendContact}/>
-
           </div>
         </div>
        </div>
