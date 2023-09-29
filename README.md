@@ -4,7 +4,8 @@
 - `npm install`
 - `npm start`
   
-Создать Java-проект:
+
+
 Создать Java-проект:
 - перейти на [spring.io](https://start.spring.io)
   - Project: Maven
