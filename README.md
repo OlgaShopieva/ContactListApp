@@ -29,7 +29,3 @@
 Создание базы данных
 - Docker: `docker run --name contact-db -p 8000:3306 -e MYSQL_ROOT_PASSWORD=12345678 -d mysql`
 
-
-## Библиотеки
-
-- Библиотека для роутинга[react-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.0.0) -> `npm i react-router-dom@5.0.0` -> `npm i --save-dev @types/react-router-dom`
