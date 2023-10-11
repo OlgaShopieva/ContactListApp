@@ -1,4 +1,11 @@
 # ContactListApp
+In this repository you can find simple web-app "Contact list" which contains general contact information about people (id, full name, telephone, notes).
+It provides you with the ability to Create, Read, Update and Delete functionaly (CRUD) with each contact. 
+
+Stack: JavaScript, Bootstrap, Java, Spring, Docker, MySQL.
+
+Instructions:
+
 Create React app:
 - `npx create-react-app client --template typescript`
 - `npm install`
